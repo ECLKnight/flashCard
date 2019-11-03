@@ -1,3 +1,8 @@
+/// I copied this file from London App Brewery, so that I can switch from my
+/// mac to my pc easily. The purpose for this is to make learning on the go
+/// easier.
+/// Emanuel
+
 import 'package:flutter/material.dart';
 import 'package:flash_chat/screens/welcome_screen.dart';
 import 'package:flash_chat/screens/login_screen.dart';
@@ -12,7 +17,7 @@ class FlashChat extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
         textTheme: TextTheme(
-          body1: TextStyle(color: Colors.blue), //     body1     body1: (color: Colors.black54),
+          body1: TextStyle(color: Colors.black54),
 
         ),
       ),
