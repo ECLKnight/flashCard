@@ -2,6 +2,7 @@
 /// mac to my pc easily. The purpose for this is to make learning on the go
 /// easier.
 /// Emanuel
+/// DAY 1
 
 import 'package:flash_chat/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
