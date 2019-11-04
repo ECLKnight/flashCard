@@ -2,7 +2,7 @@
 /// mac to my pc easily. The purpose for this is to make learning on the go
 /// easier.
 /// Emanuel
-/// DAY 1
+/// DAY 1 dfkjkas;lfgjsa;lfkgj
 
 import 'package:flash_chat/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
