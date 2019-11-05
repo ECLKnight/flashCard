@@ -30,6 +30,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             SizedBox(
               height: 48.0,
             ),
+            /// Email
             TextField(
               onChanged: (value) {
                 //Do something with the user input.
@@ -54,6 +55,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             SizedBox(
               height: 8.0,
             ),
+            /// Password
             TextField(
               onChanged: (value) {
                 //Do something with the user input.
@@ -80,9 +82,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ),
 
             RoundedButton(
-              roundButtonColor: Colors.blueAccent,
-              roundButtonLabel: 'Register',
-              onPressRoute: () {},
+              color: Colors.blueAccent,
+              title: 'Register',
+              onPressed: () {},
             )
           ],
         ),
