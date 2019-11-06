@@ -33,6 +33,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
             /// Email
             TextField(
+              keyboardType: TextInputType.emailAddress,
+              textAlign: TextAlign.center,
               onChanged: (value) {
                 //Do something with the user input.
               },
@@ -45,6 +47,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
             /// Password
             TextField(
+              textAlign: TextAlign.center,
+              obscureText: true,
               onChanged: (value) {
                 //Do something with the user input.
               },
