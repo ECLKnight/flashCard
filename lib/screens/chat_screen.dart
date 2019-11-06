@@ -59,12 +59,14 @@ class _ChatScreenState extends State<ChatScreen> {
                 children: <Widget>[
                   Expanded(
                     child: TextField(
+                      /// User entered message
                       onChanged: (value) {
                         //Do something with the user input.
                       },
                       decoration: kMessageTextFieldDecoration,
                     ),
                   ),
+                  /// Send Button
                   FlatButton(
                     onPressed: () {
                       //Implement send functionality.
