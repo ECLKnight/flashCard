@@ -27,14 +27,15 @@ class _ChatScreenState extends State<ChatScreen> {
       print(e);
     }
   }
-/// This method prints a list of string the list contains the messages that have
-/// been sent. 
-/// The user has to be the one who is actively presing a button to see if they
-/// got new messages. OR, a timer has to be coded to make the method check every
-/// couple of seconds.
-/// The donw side to this method is that it gets a list of messages and if a new
-/// one is sent it has to get the full list again and not just the new message.
-/// This is why this method is not a STREAM<String>
+
+  /// This method prints a list of string the list contains the messages that have
+  /// been sent.
+  /// The user has to be the one who is actively presing a button to see if they
+  /// got new messages. OR, a timer has to be coded to make the method check every
+  /// couple of seconds.
+  /// The donw side to this method is that it gets a list of messages and if a new
+  /// one is sent it has to get the full list again and not just the new message.
+  /// This is why this method is not a STREAM<String>
   // void getMessages() async {
   //   final messages = await _firestore.collection('messages').getDocuments();
   //   for (var message in messages.documents) {
@@ -42,18 +43,19 @@ class _ChatScreenState extends State<ChatScreen> {
   //   }
   // }
 
-
-/// This method does the samething as getMessages() the only difference is that 
-/// it's actively waiting for new pieces of String data to come in. So it 
-/// add's it to the current list
-/// This is a Stream<String>
-void messagesStream() async {
-  await for(var snapshot in _firestore.collection('messages').snapshots()){
-        for(var message in snapshot.documents){
-          print(message.data);
-        }
+  /// This method does the samething as getMessages() the only difference is that
+  /// it's actively waiting for new pieces of String data to come in. So it
+  /// add's it to the current list
+  /// This method is a Stream<String>
+  /// The .snapshots() is the thing that gives us access to the stream.
+  void messagesStream() async {
+    await for (var snapshot in _firestore.collection('messages').snapshots()) {
+      for (var message in snapshot.documents) {
+        print(message.data);
+      }
+    }
   }
-}
+
   @override
   void initState() {
     super.initState();
@@ -84,6 +86,35 @@ void messagesStream() async {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            /// We have a StreamBuilder and we are listening for QuerySnapshots
+            StreamBuilder<QuerySnapshot>(
+              stream: _firestore.collection('messages').snapshots(),
+
+              /// The SNAPSHOT being use here is from flutter and not from firestore
+              /// This snapshot is AsyncSnapshot <QuerySnapshot>
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.lightBlueAccent,
+                    ),
+                  );
+                }
+                final messages = snapshot.data.documents;
+                List<Text> messageWidgets = [];
+                for (var message in messages) {
+                  final messageText = message.data['text'];
+                  final messageSender = message.data['sender'];
+
+                  final messageWidget =
+                      Text('$messageText from $messageSender');
+                  messageWidgets.add(messageWidget);
+                }
+                return Column(
+                  children: messageWidgets,
+                );
+              },
+            ),
             Container(
               decoration: kMessageContainerDecoration,
               child: Row(
