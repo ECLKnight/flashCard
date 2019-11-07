@@ -30,12 +30,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               /// Lightning Logo
-              Hero(
-                /// End of the Hero widget
-                tag: 'logo',
-                child: Container(
-                  height: 200.0,
-                  child: Image.asset('images/logo.png'),
+              Flexible(
+                child: Hero(
+                  /// End of the Hero widget
+                  tag: 'logo',
+                  child: Container(
+                    height: 200.0,
+                    child: Image.asset('images/logo.png'),
+                  ),
                 ),
               ),
               SizedBox(
@@ -90,7 +92,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     }
 
                     setState(() {
-                     shoeSpinner = false; 
+                      shoeSpinner = false;
                     });
                   } catch (e) {
                     /// What if the user is trying to use a already registered email
