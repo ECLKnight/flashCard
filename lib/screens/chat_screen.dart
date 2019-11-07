@@ -51,13 +51,13 @@ class _ChatScreenState extends State<ChatScreen> {
   /// add's it to the current list
   /// This method is a Stream<String>
   /// The .snapshots() is the thing that gives us access to the stream.
-  void messagesStream() async {
-    await for (var snapshot in _firestore.collection('messages').snapshots()) {
-      for (var message in snapshot.documents) {
-        print(message.data);
-      }
-    }
-  }
+  // void messagesStream() async {
+  //   await for (var snapshot in _firestore.collection('messages').snapshots()) {
+  //     for (var message in snapshot.documents) {
+  //       print(message.data);
+  //     }
+  //   }
+  // }
 
   @override
   void initState() {
@@ -71,14 +71,14 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         leading: null,
         actions: <Widget>[
-          /// Sign out button
+          /// Sign out button x chape
           IconButton(
               icon: Icon(Icons.close),
               onPressed: () {
-                messagesStream();
+                // messagesStream();
                 // getMessages();
-                // _auth.signOut();
-                // Navigator.pop(context);
+                _auth.signOut();
+                Navigator.pop(context);
               }),
         ],
         title: Text('⚡️Chat'),
@@ -147,7 +147,7 @@ class MessagesStream extends StatelessWidget {
             ),
           );
         }
-        final messages = snapshot.data.documents;
+        final messages = snapshot.data.documents.reversed;
         List<MessageBubble> messageBubbles = [];
         for (var message in messages) {
           /// Senders information
@@ -167,6 +167,7 @@ class MessagesStream extends StatelessWidget {
         }
         return Expanded(
           child: ListView(
+            reverse: true,
             padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
             children: messageBubbles,
           ),
